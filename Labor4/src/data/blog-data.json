@@ -1,0 +1,123 @@
+
+{
+  "categories": [
+    { "id": "1", "name": "Дизайн", "slug": "design" },
+    { "id": "2", "name": "Розробка", "slug": "development" },
+    { "id": "3", "name": "Маркетинг", "slug": "marketing" },
+    { "id": "4", "name": "Бізнес", "slug": "business" }
+  ],
+  "blogPosts": [
+    {
+      "id": "1",
+      "title": "Як створити привабливий UI дизайн",
+      "description": "Поради щодо створення інтуїтивного та привабливого інтерфейсу користувача.",
+      "content": "Детальний контент про UI дизайн...",
+      "image": "/1.png",
+      "author": {
+        "name": "Олена Петренко",
+        "avatar": "/placeholder.svg"
+      },
+      "category": { "id": "1", "name": "Дизайн", "slug": "design" },
+      "date": "2024-02-20",
+      "readTime": "5 хв"
+    },
+    {
+      "id": "2",
+      "title": "Основи React розробки",
+      "description": "Базові концепції та найкращі практики React розробки.",
+      "content": "Детальний контент про React...",
+      "image": "/1.png",
+      "author": {
+        "name": "Іван Ковальчук",
+        "avatar": "/placeholder.svg"
+      },
+      "category": { "id": "2", "name": "Розробка", "slug": "development" },
+      "date": "2024-02-19",
+      "readTime": "7 хв"
+    },
+    {
+      "id": "3",
+      "title": "Ефективні стратегії маркетингу",
+      "description": "Як досягти успіху в маркетингу за допомогою сучасних стратегій.",
+      "content": "Детальний контент про маркетинг...",
+      "image": "/1.png",
+      "author": {
+        "name": "Марія Сидоренко",
+        "avatar": "/placeholder.svg"
+      },
+      "category": { "id": "3", "name": "Маркетинг", "slug": "marketing" },
+      "date": "2024-02-18",
+      "readTime": "6 хв"
+    },
+    {
+      "id": "4",
+      "title": "Як розпочати власний бізнес",
+      "description": "Поради для початківців, які хочуть заснувати свій бізнес.",
+      "content": "Детальний контент про бізнес...",
+      "image": "/1.png",
+      "author": {
+        "name": "Андрій Іванов",
+        "avatar": "/placeholder.svg"
+      },
+      "category": { "id": "4", "name": "Бізнес", "slug": "business" },
+      "date": "2024-02-17",
+      "readTime": "8 хв"
+    },
+    {
+      "id": "5",
+      "title": "Тренди у веб-дизайні 2024",
+      "description": "Огляд найактуальніших трендів у веб-дизайні на 2024 рік.",
+      "content": "Детальний контент про тренди веб-дизайну...",
+      "image": "/1.png",
+      "author": {
+        "name": "Оксана Лисенко",
+        "avatar": "/placeholder.svg"
+      },
+      "category": { "id": "1", "name": "Дизайн", "slug": "design" },
+      "date": "2024-02-16",
+      "readTime": "5 хв"
+    },
+    {
+      "id": "6",
+      "title": "Розробка мобільних додатків на Flutter",
+      "description": "Як розпочати розробку мобільних додатків за допомогою Flutter.",
+      "content": "Детальний контент про Flutter...",
+      "image": "/1.png",
+      "author": {
+        "name": "Сергій Павленко",
+        "avatar": "/placeholder.svg"
+      },
+      "category": { "id": "2", "name": "Розробка", "slug": "development" },
+      "date": "2024-02-15",
+      "readTime": "7 хв"
+    },
+    {
+      "id": "7",
+      "title": "Як збільшити продажі за допомогою соціальних мереж",
+      "description": "Поради щодо використання соціальних мереж для збільшення продажів.",
+      "content": "Детальний контент про маркетинг у соціальних мережах...",
+      "image": "/1.png",
+      "author": {
+        "name": "Наталія Коваль",
+        "avatar": "/placeholder.svg"
+      },
+      "category": { "id": "3", "name": "Маркетинг", "slug": "marketing" },
+      "date": "2024-02-14",
+      "readTime": "6 хв"
+    },
+    {
+      "id": "8",
+      "title": "Фінансове планування для малого бізнесу",
+      "description": "Як правильно планувати фінанси для малого бізнесу.",
+      "content": "Детальний контент про фінансове планування...",
+      "image": "/1.png",
+      "author": {
+        "name": "Вікторія Мельник",
+        "avatar": "/placeholder.svg"
+      },
+      "category": { "id": "4", "name": "Бізнес", "slug": "business" },
+      "date": "2024-02-13",
+      "readTime": "8 хв"
+    }
+  ]
+}
