@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flat UI Colors</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #3c40c6;
+            background-image: url('images/stars-opacity.0979c1.svg');
+            background-repeat: repeat;
+            background-size: 200px;
+            color: white;
+        }
+
+        header {
+            background-color: #3c40c6;
+            padding: 20px;
+            text-align: center;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+        }
+
+        #palette-list {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .color-name {
+            color: #333;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .palette-item {
+            background-color: white;
+            border-radius: 8px;
+            padding: 15px;
+            cursor: pointer;
+            transition: transform 0.2s;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .palette-item:hover {
+            transform: scale(1.05);
+        }
+
+        .palette-colors {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+            gap: 2px;
+            aspect-ratio: 4/3;
+            margin-top: 10px;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .palette-color {
+            width: 100%;
+            height: 100%;
+            border-radius: 0;
+            border: none;
+            aspect-ratio: 1;
+        }
+
+        .palette-item h3 {
+            font-size: 16px;
+            margin: 10px 0;
+            color: #333;
+        }
+
+        .palette-item span {
+            font-size: 24px;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        #color-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 20px;
+            padding: 20px;
+            background-color: white;
+        }
+
+        .color-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .color-item:hover .color-square {
+            transform: scale(1.05);
+        }
+
+        #fullscreen-color {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            z-index: 1000;
+            flex-direction: column;
+        }
+
+        #color-code {
+            font-size: 2em;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .top-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 10px 20px;
+            background-color: white;
+            display: none;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 1001;
+            border-bottom: 1px solid #eee;
+        }
+
+        .back-btn {
+            background: none;
+            border: none;
+            color: #333;
+            font-size: 16px;
+            cursor: pointer;
+            padding: 8px 15px;
+        }
+
+        .format-selector {
+            position: relative;
+        }
+
+        .format-selector::after {
+            content: "▼";
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            pointer-events: none;
+        }
+
+        #colorFormat {
+            appearance: none;
+            -webkit-appearance: none;
+            background: black;
+            color: white;
+            padding: 8px 30px 8px 15px;
+            border-radius: 4px;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            min-width: 200px;
+        }
+
+        #color-picker {
+            background-color: #f5f5f5;
+            min-height: 100vh;
+            padding-top: 60px;
+        }
+
+        .sound-toggle {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #333;
+        }
+
+        main {
+            margin-top: 50px;
+        }
+
+        .color-square {
+            width: 100%;
+            aspect-ratio: 1;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            transition: transform 0.2s;
+        }
+    </style>
+</head>
+<body>
+    <section id="color-picker" style="display: none;">
+        <h2 id="palette-name"></h2>
+        <div id="color-grid"></div>
+    </section>
+    
+    <div class="top-menu">
+        <button class="back-btn">← Back</button>
+        <div class="format-selector">
+            <select id="colorFormat">
+                <option value="HEX">Copy Format: HEX (#AA1923)</option>
+                <option value="RGB">Copy Format: RGB</option>
+                <option value="HSL">Copy Format: HSL</option>
+            </select>
+        </div>
+        <div class="sound-toggle">
+            Sound On <input type="checkbox" id="soundToggle" checked>
+        </div>
+    </div>
+
+    <header>
+        <h1>Flat UI Colors</h1>
+    </header>
+
+    <main>
+        <section id="palette-list"></section>
+        <section id="color-picker" style="display: none;">
+            <h2 id="palette-name"></h2>
+            <div id="color-grid"></div>
+        </section>
+        <div id="fullscreen-color" style="display: none;">
+            <span id="color-code"></span>
+        </div>
+    </main>
+
+    <audio id="sound" src="src_notify.mp3"></audio>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const paletteList = document.getElementById('palette-list');
+            const colorPicker = document.getElementById('color-picker');
+            const fullscreenColor = document.getElementById('fullscreen-color');
+            const colorCode = document.getElementById('color-code');
+            const sound = document.getElementById('sound');
+            const topMenu = document.querySelector('.top-menu');
+            const backBtn = document.querySelector('.back-btn');
+            const soundToggle = document.getElementById('soundToggle');
+            const colorFormatSelect = document.getElementById('colorFormat');
+
+            let currentPalette = null;
+
+            fetch('pallete.json')
+                .then(response => response.json())
+                .then(data => {
+                    data.forEach(palette => {
+                        const paletteItem = document.createElement('div');
+                        paletteItem.className = 'palette-item';
+                        paletteItem.innerHTML = `
+                            <span>${palette.emoji}</span>
+                            <h3>${palette.paletteName}</h3>
+                            <div class="palette-colors">
+                                ${palette.colors.slice(0, 12).map(color => 
+                                    `<div class="palette-color" style="background-color: ${color.color};"></div>`
+                                ).join('')}
+                            </div>
+                        `;
+                        paletteItem.addEventListener('click', () => showColors(palette));
+                        paletteList.appendChild(paletteItem);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error loading palettes:', error);
+                    paletteList.innerHTML = '<p>Error loading palettes. Please check the console for more details.</p>';
+                });
+
+            function showColors(palette) {
+                currentPalette = palette;
+                document.getElementById('palette-name').textContent = palette.paletteName;
+                const colorGrid = document.getElementById('color-grid');
+                colorGrid.innerHTML = '';
+
+                palette.colors.forEach(color => {
+                    const colorItem = document.createElement('div');
+                    colorItem.className = 'color-item';
+                    colorItem.innerHTML = `
+                        <div class="color-square" style="background-color: ${color.color};"></div>
+                        <div class="color-name">${color.name}</div>
+                    `;
+                    colorItem.addEventListener('click', () => showFullscreenColor(color.color));
+                    colorGrid.appendChild(colorItem);
+                });
+
+                paletteList.style.display = 'none';
+                colorPicker.style.display = 'block';
+                topMenu.style.display = 'flex';
+            }
+
+            function showFullscreenColor(color) {
+                const formattedColor = convertColor(color, colorFormatSelect.value);
+                fullscreenColor.style.backgroundColor = color;
+                colorCode.textContent = formattedColor;
+                fullscreenColor.style.display = 'flex';
+
+                navigator.clipboard.writeText(formattedColor).then(() => {
+                    if (soundToggle.checked) {
+                        sound.currentTime = 0;
+                        sound.play().catch(e => console.error('Error playing sound:', e));
+                    }
+                });
+
+                setTimeout(() => {
+                    fullscreenColor.style.display = 'none';
+                }, 2000);
+            }
+
+            function convertColor(color, format) {
+                let hex = color.replace('#', '');
+                let r = parseInt(hex.substring(0, 2), 16);
+                let g = parseInt(hex.substring(2, 4), 16);
+                let b = parseInt(hex.substring(4, 6), 16);
+
+                switch(format) {
+                    case 'HEX':
+                        return color.toUpperCase();
+                    case 'RGB':
+                        return `rgb(${r}, ${g}, ${b})`;
+                    case 'HSL':
+                        r /= 255;
+                        g /= 255;
+                        b /= 255;
+
+                        const max = Math.max(r, g, b);
+                        const min = Math.min(r, g, b);
+                        let h, s, l = (max + min) / 2;
+
+                        if (max === min) {
+                            h = s = 0;
+                        } else {
+                            const d = max - min;
+                            s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+                            switch (max) {
+                                case r: h = (g - b) / d + (g < b ? 6 : 0); break;
+                                case g: h = (b - r) / d + 2; break;
+                                case b: h = (r - g) / d + 4; break;
+                            }
+                            h /= 6;
+                        }
+
+                        return `hsl(${Math.round(h * 360)}, ${Math.round(s * 100)}%, ${Math.round(l * 100)}%)`;
+                    default:
+                        return color;
+                }
+            }
+
+            backBtn.addEventListener('click', () => {
+                paletteList.style.display = 'grid';
+                colorPicker.style.display = 'none';
+                topMenu.style.display = 'none';
+            });
+
+            colorFormatSelect.addEventListener('change', () => {
+                if (fullscreenColor.style.display === 'flex') {
+                    const currentColor = fullscreenColor.style.backgroundColor;
+                    const formattedColor = convertColor(currentColor, colorFormatSelect.value);
+                    colorCode.textContent = formattedColor;
+                }
+            });
+        });
+    </script>
+</body>
+</html>
